@@ -1,46 +1,43 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lenis from "lenis";
+import { LenisContext } from "../components/context/LenisContext";
 
-export default function LenisProvider() {
+export default function LenisProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+
   useEffect(() => {
-    // IMPORTANT: Single instance only
-    const lenis = new Lenis({
-      // Smooth scroll base
+    const instance = new Lenis({
       smoothWheel: true,
-
-      // Modern smoothing
-      lerp: 0.08, // smoothing factor
+      lerp: 0.08,
       duration: 1.2,
-
-      // Modern exponential easing — Apple-feel
       easing: (t: number) => 1 - Math.pow(2, -10 * t),
-
-      // Touch behavior tuning
       syncTouch: true,
       syncTouchLerp: 0.08,
       touchInertiaExponent: 35,
-
-      // Sensitivity multiplier
       touchMultiplier: 1.4,
       wheelMultiplier: 1.1,
     });
 
-    // RAF loop (Lenis handles timing)
-    let rafId: number;
+    queueMicrotask(() => {
+      setLenis(instance);
+    });
+
     const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+      instance.raf(time);
+      requestAnimationFrame(raf);
     };
+    requestAnimationFrame(raf);
 
-    rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-    };
+    return () => instance.destroy();
   }, []);
 
-  return null;
+  return (
+    <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
+  );
 }
