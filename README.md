@@ -1,8 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PureBrush
 
-## Getting Started
+A modern, animated landing page for PureBrush - built with Next.js, React, and Framer Motion.
 
-First, run the development server:
+## Features
+
+- **Smooth Animations**: Powered by Framer Motion and Lenis smooth scroll
+- **Interactive Components**: Magnetic cursor effects, tilt cards, and velocity-based animations
+- **Responsive Design**: Fully responsive layout using Tailwind CSS
+- **Modern UI**: Clean and professional design with shadcn/ui components
+- **Performance Optimized**: Built with Next.js 14+ for optimal loading speeds
+
+## Project Structure
+
+```
+PureBrush/
+├── app/                      # Next.js app directory
+│   ├── favicon.ico          # Site favicon
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout
+│   ├── lenis.tsx            # Lenis smooth scroll setup
+│   └── page.tsx             # Home page
+├── components/              # React components
+│   ├── BestSellers.tsx      # Best selling products section
+│   ├── ComparisonSection.tsx # Product comparison
+│   ├── FaqNewsletter.tsx    # FAQ and newsletter signup
+│   ├── Features.tsx         # Product features showcase
+│   ├── Footer.tsx           # Footer component
+│   ├── Header.tsx           # Navigation header
+│   ├── Hero.tsx             # Hero section
+│   ├── HowItWorks.tsx       # How it works section
+│   ├── IngredientsSection.tsx # Ingredients showcase
+│   ├── MagneticCursor.tsx   # Interactive cursor effect
+│   ├── Motion.ts            # Motion variants and animations
+│   ├── ScrollToLink.tsx     # Smooth scroll navigation
+│   ├── SplitSection.tsx     # Split content layout
+│   ├── StaggerReveal.tsx    # Staggered animation wrapper
+│   ├── StatsSection.tsx     # Statistics display
+│   ├── Testimonials.tsx     # Customer testimonials
+│   ├── TiltCard.tsx         # 3D tilt effect cards
+│   ├── VelocityImageCard.tsx # Velocity-based image animations
+│   ├── VideoShowcase.tsx    # Video presentation
+│   ├── context/
+│   │   └── LenisContext.tsx # Lenis scroll context
+│   └── ui/                  # shadcn/ui components
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── input.tsx
+│       └── separator.tsx
+└── lib/
+    └── utils.ts             # Utility functions
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 14+
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Smooth Scroll**: Lenis
+- **UI Components**: shadcn/ui
+- **Icons**: Lucide React
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/purebrush.git
+cd purebrush
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
@@ -10,28 +88,89 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create an optimized production build:
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The landing page consists of several key sections:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Hero**: Main header with call-to-action
+- **Features**: Product features and benefits
+- **How It Works**: Step-by-step guide
+- **Best Sellers**: Featured products
+- **Ingredients**: Product composition details
+- **Comparison**: Product comparison table
+- **Statistics**: Key metrics and achievements
+- **Testimonials**: Customer reviews
+- **Video Showcase**: Product demonstration
+- **FAQ & Newsletter**: Common questions and email signup
 
-## Deploy on Vercel
+## Component Architecture
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Animation Components
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# fsd-next-js-project
+- `Motion.ts`: Centralized animation variants for consistency
+- `StaggerReveal.tsx`: Wrapper for staggered child animations
+- `MagneticCursor.tsx`: Interactive cursor following effect
+- `TiltCard.tsx`: 3D tilt effect on hover
+- `VelocityImageCard.tsx`: Scroll velocity-based animations
+
+### Context
+
+- `LenisContext.tsx`: Provides Lenis smooth scroll instance throughout the app
+
+### UI Components
+
+Built with shadcn/ui for consistent design system:
+
+- Button
+- Card
+- Input
+- Separator
+
+## Customization
+
+### Styling
+
+Global styles are defined in `app/globals.css`. The project uses Tailwind CSS for utility-first styling.
+
+### Animations
+
+Animation variants can be customized in `components/Motion.ts`. Adjust timing, easing, and transitions as needed.
+
+### Content
+
+Update component content directly in their respective files under the `components/` directory.
+
+## Performance Considerations
+
+- Images should be optimized using Next.js Image component
+- Lazy loading is implemented for below-the-fold content
+- Animations are GPU-accelerated for smooth performance
+- Code splitting is handled automatically by Next.js
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+This project is proprietary and confidential.
+
+## Contact
+
+For questions or support, please contact the development team.
