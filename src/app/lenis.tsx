@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
 import { LenisContext } from "../components/context/LenisContext";
 
@@ -9,20 +9,21 @@ export default function LenisProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [lenis, setLenis] = useState<Lenis | null>(null);
+  const lenisRef = useRef<Lenis | null>(null);
+  const [lenis, setLenis] = useState<Lenis | null>(null); // exposed to context
 
   useEffect(() => {
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
+    if (isMobile) return; // disable lenis on mobile
+
     const instance = new Lenis({
       smoothWheel: true,
       lerp: 0.08,
       duration: 1.2,
       easing: (t: number) => 1 - Math.pow(2, -10 * t),
-      syncTouch: true,
-      syncTouchLerp: 0.08,
-      touchInertiaExponent: 35,
-      touchMultiplier: 1.4,
-      wheelMultiplier: 1.1,
     });
+
+    lenisRef.current = instance;
 
     queueMicrotask(() => {
       setLenis(instance);
